@@ -171,9 +171,9 @@ namespace dawmTema1.Database
             }
         };
 
-        public static List<Client> Students = Doctors.SelectMany(x => x.Clients).ToList();
+        public static List<Client> Clients = Doctors.SelectMany(x => x.Clients).ToList();
 
-        public static List<Session> Grades = Doctors.SelectMany(x => x.Clients.SelectMany(x => x.Sessions)).ToList();
+        public static List<Session> Sessions = Doctors.SelectMany(x => x.Clients.SelectMany(x => x.Sessions)).ToList();
 
     }
 }
