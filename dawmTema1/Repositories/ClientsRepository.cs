@@ -22,5 +22,18 @@ namespace dawmTema1.Repositories
 
             return result;
         }
+
+        public Client DeleteClient(int clientId)
+        {
+            var result = DBContext.Clients
+           .FirstOrDefault(e => e.Id == clientId);
+            if (result != null)
+            {
+                DBContext.Clients.Remove(result);
+                return result;
+            }
+
+            return null;
+        }
     }
 }

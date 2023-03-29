@@ -6,7 +6,7 @@ using dawmTema1.Dtos;
 namespace dawmTema1.Controllers
 {
     [ApiController]
-    [Route("api/students")]
+    [Route("api/clients")]
     public class ClientsController : ControllerBase
     {
         private ClientService clientService { get; set; }
@@ -17,7 +17,7 @@ namespace dawmTema1.Controllers
             this.clientService = clientService;
         }
 
-        [HttpGet("/get-all")]
+        [HttpGet("/get-all-clients")]
         public ActionResult<List<Client>> GetAll()
         {
             var results = clientService.GetAll();
@@ -25,38 +25,52 @@ namespace dawmTema1.Controllers
             return Ok(results);
         }
 
-        [HttpGet("/get/{studentId}")]
-        public ActionResult<Client> GetById(int studentId)
+        [HttpGet("/get/{clientId}")]
+        public ActionResult<Client> GetById(int clientId)
         {
-            var result = clientService.GetById(studentId);
+            var result = clientService.GetById(clientId);
 
             if (result == null)
             {
-                return BadRequest("Student not fount");
+                return BadRequest("Client not fount");
             }
 
             return Ok(result);
         }
 
-        [HttpPatch("edit-name")]
-        public ActionResult<bool> GetById([FromBody] ClientUpdateDto studentUpdateModel)
+        [HttpPatch("edit-client-name")]
+        public ActionResult<bool> GetById([FromBody] ClientUpdateDto clientUpdateModel)
         {
-            var result = clientService.EditName(studentUpdateModel);
+            var result = clientService.EditName(clientUpdateModel);
 
             if (!result)
             {
-                return BadRequest("Student could not be updated.");
+                return BadRequest("Client could not be updated.");
             }
 
             return result;
         }
 
-        //[HttpPost("grades-by-course")]
-        //public ActionResult<SessionsByClient> Get_CourseGrades_ByStudentId([FromBody] ClientSessionsRequest request)
-        //{
-        //    var result = clientService.GetGradesById(request.ClientId, request.Procedure);
-        //    return Ok(result);
-        //}
+        [HttpDelete("delete-client/{clientId}")]
+        public bool DeleteById(int clientId)
+        {
+            try
+            {
+                var clientToDelete = clientService.GetById(clientId);
 
+                if (clientToDelete == null)
+                {
+                    return false;
+                }
+
+                clientService.DeleteById(clientId);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }

@@ -46,6 +46,18 @@ namespace dawmTema1.Services
             return true;
         }
 
+        public bool DeleteById(int clientId)
+        {
+            if (clientId == null)
+            {
+                return false;
+            }
+
+            var result = clientsRepository.DeleteClient(clientId);
+
+            return true;
+        }
+
         //public SessionsByClient GetSessionsById(int clientId, Procedure procedure)
         //{
         //    var clientWithGrades = clientsRepository.GetByIdWithSessions(clientId, procedure);

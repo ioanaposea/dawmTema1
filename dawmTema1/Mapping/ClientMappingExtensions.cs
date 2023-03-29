@@ -13,8 +13,8 @@ namespace dawmTema1.Mapping
             result.Id = client.Id;
             result.FullName = client.FirstName + " " + client.LastName;
             result.DoctorId = client.DoctorId;
-            result.Doctor.LastName = client.Doctor?.LastName;
-            result.Doctor.FirstName = client.Doctor?.FirstName;
+           // result.Doctor.LastName = client.Doctor?.LastName;
+           // result.Doctor.FirstName = client.Doctor?.FirstName;
             result.Sessions = client.Sessions.ToSessionDtos();
 
             return result;

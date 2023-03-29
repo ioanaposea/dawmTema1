@@ -5,7 +5,7 @@ namespace dawmTema1.Dtos
     public class ClientUpdateDto
     {
         /// <summary>
-        ///     Avem nevoie pentru a putea gasi studentul.
+        ///     Avem nevoie pentru a putea gasi clientul.
         ///     Aceasta proprietate este ceruta in acelasi "body" pentru consecventa,
         ///     chiar daca nu face parte din update.
         /// </summary>
